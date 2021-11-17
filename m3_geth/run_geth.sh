@@ -10,4 +10,12 @@ $GETH_BINARY --catalyst --http --ws -http.api "engine" --datadir $DATADIR accoun
 
 echo -n $NODEKEY > $DATADIR/geth/nodekey
 
-$GETH_BINARY --catalyst --http -http.api "engine,eth" --datadir  $DATADIR --allow-insecure-unlock --unlock "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" --password "" --nodiscover console
+$GETH_BINARY \
+	--catalyst \
+	--verbosity 4 \
+	--http -http.api "engine,eth" \
+	--datadir $DATADIR \
+	--allow-insecure-unlock \
+	--unlock "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" \
+	--password "" \
+	--nodiscover console
