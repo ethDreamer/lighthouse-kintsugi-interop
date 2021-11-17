@@ -1,19 +1,30 @@
 {
   "name": "TheMerge_Devnet",
   "engine": {
-    "clique": {
+    "Ethash": {
       "params": {
-        "period": 5,
-        "epoch": 30000
+		"minimumDifficulty": "0x20000",
+		"difficultyBoundDivisor": "0x800",
+		"durationLimit": "0xd",
+		"blockReward": {
+			"0x0": "0x1BC16D674EC80000"
+        },
+		"homesteadTransition": "0x0",
+		"eip100bTransition": "0x0",
+		"difficultyBombDelays": {
+		}
       }
     }
   },
   "params": {
     "gasLimitBoundDivisor": "0x400",
+	"registrar": "0x0000000000000000000000000000000000000000",
     "accountStartNonce": "0x0",
     "maximumExtraDataSize": "0x20",
     "minGasLimit": "0x1388",
     "networkID": 1,
+	"maxCodeSize": "0x6000",
+	"maxCodeSizeTransition": "0xa",
     "eip150Transition": "0x0",
     "eip155Transition": "0x0",
     "eip158Transition": "0x0",
@@ -50,14 +61,17 @@
         "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
       }
     },
-    "timestamp": "0x0",
-    "extraData":"0x0000000000000000000000000000000000000000000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-    "gasLimit":"0x1C9C380",
     "difficulty": "0x0",
     "author": "0x0000000000000000000000000000000000000000",
+    "timestamp": "0x0",
     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-	"baseFeePerGas":"0x7"
+    "extraData":"0x0000000000000000000000000000000000000000000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "gasLimit":"0x1C9C380",
+    "baseFeePerGas":"0x7"
   },
+  "nodes": [
+		"enode://9102f063c9be8a4da4c8851e2b05e162f9a450dd95c5c9b4987ebd196fdf0a7e0f8a0ef7e47feb33e459e242b0fda6a6f4b0adfb0f638eacd07cb929f36427b9@127.0.0.1:30303"
+  ],
   "accounts": {
     "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b":
 	{
