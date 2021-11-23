@@ -10,6 +10,6 @@ $NETHERMIND_BIN \
 	--config $PWD/kintsugi_m3.cfg \
 	--datadir $DATADIR \
   	--Merge.BlockAuthorAccount 0x1000000000000000000000000000000000000000 \
-	--Merge.TerminalTotalDifficulty 100000000
+	--Merge.TerminalTotalDifficulty 50000000
 
 

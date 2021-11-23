@@ -3,9 +3,6 @@ source ./vars.env
 rm -rf $TESTNET_DIR
 rm -rf $BEACON_DIR
 
-EE_PORT=${1:-8545}
-EE_ENDPOINT="http://localhost:${EE_PORT}"
-
 
 if [ -z ${GENESIS_BLOCK_HASH} ]; then
 echo "Retrieving genesis block from execution node..."
@@ -35,7 +32,7 @@ fi
 
 echo "Using Genesis time: $GENESIS_TIME"
 
-$LCLI \
+$LCLI_BIN \
 	--spec $SPEC \
 	new-testnet \
 	--genesis-time $GENESIS_TIME \

@@ -10,7 +10,7 @@ source ./vars.env
 
 echo "Staring a validator client $NODE_INDEX..."
 
-$LIGHTHOUSE \
+$LIGHTHOUSE_BIN \
 	--debug-level $DEBUG_LEVEL \
 	--datadir $VALIDATOR_DIR/$SUFFIX_DIR \
 	vc \

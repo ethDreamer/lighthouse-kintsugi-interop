@@ -15,7 +15,7 @@ echo -n $NODEKEY > $DATADIR/geth/nodekey
 
 $GETH_BINARY \
 	--catalyst \
-	--http -http.api "engine,eth" \
+	--http --http.api "engine,eth" \
 	--datadir $DATADIR \
 	--allow-insecure-unlock \
 	--unlock "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" \
