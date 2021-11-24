@@ -12,7 +12,7 @@ GENESIS_BLOCK_HASH=$(curl \
 	-H "Content-Type: application/json" \
 	--data \
 	'{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["earliest",false],"id":1}' \
-	$EE_ENDPOINT \
+	$LIGHTHOUSE_EE_ENDPOINT \
 	| jq '.result.hash' \
 	| tr -d '"')
 else
@@ -32,7 +32,7 @@ fi
 
 echo "Using Genesis time: $GENESIS_TIME"
 
-$LCLI_BIN \
+$LCLI_BINARY \
 	--spec $SPEC \
 	new-testnet \
 	--genesis-time $GENESIS_TIME \

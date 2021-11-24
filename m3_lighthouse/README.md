@@ -1,51 +1,59 @@
-## M4 Lighthouse
+# Milestone #3: Lighthouse
 
-This contains the scripts required to run Lighthouse in the M4 milestone.
+This contains the scripts required to run Lighthouse in the M3 milestone.
 
-It is assumed that users have installed `lighthouse` and `lcli` binaries from
-[`merge-f2f`](https://github.com/sigp/lighthouse/pull/2620) branch of
-Lighthouse.
-
-Build Instructions:
+### Build Instructions
 
 ```bash
 git clone git@github.com:sigp/lighthouse.git
 cd lighthouse
+git checkout kintsugi
 make
 make install-lcli
 ```
 
-This will install `lighthouse` and `lcli` in `~/.cargo/bin`. You will need to
-ensure this is on your `PATH`.
+This will install `lighthouse` and `lcli` in `~/.cargo/bin`.
 
-Edit the vars.env to set:
+### Set Variables in `../globals.env`
 
- * `VALIDATOR_COUNT` # the number of validators in the testnet
- * `NODE_COUNT` # the number of beacon nodes (or separate validator processes)
- * `TTD_OVERRIDE` # the terminal total difficulty (in hex)
- * `GENESIS_BLOCK_HASH` # (optional) if empty, script will fetch from execution engine
- * `GENESIS_TIME` # (optional) if empty, script will round down to nearest hour
+- `LIGHTHOUSE_BINARY` # the defaults should work if you followed instructions above
+- `LCLI_BINARY`# the default should work if you followed instructions above
+- `LIGHTHOUSE_EE_ENDPOINT` # set to the eth1 endpoint you want to use
+- `VALIDATOR_COUNT` # the number of validators in the testnet
+- `NODE_COUNT` # the number of beacon nodes (or separate validator processes)
+- `TTD_OVERRIDE` # the terminal total difficulty (in decimal)
+- `GENESIS_BLOCK_HASH` # (optional) if empty, script will fetch from execution engine
+- `GENESIS_TIME` # (optional) if empty, script will round down to the start of the nearest hour
 
-Generate the validator keys and beacon state:
+### Generate the beacon state
 
-IMPORTANT: As the beacon state includes the genesis time, if `$GENESIS_TIME` is not set in `vars.env`, it is important that each node runs `./gen_beacon_state.sh` in the same hour and has their clock set correctly.
+If `GENESIS_BLOCK_HASH` is not set, you must start your exection node before running this:
+```
+$ ./gen_beacon_state.sh
+```
+
+### Generate the validator keys
 
 ```
-$ ./gen_validator_keys.sh && ./gen_beacon_state.sh
+$ ./gen_validator_keys.sh
 ```
 
-Terminal 1 - start the beacon node
+### Lighthouse beacon node
 
+Run the following in a dedicated terminal:
 ```
 $ ./start_beacon_node.sh
 ```
 
-The keys will be split up among the `$NODE_COUNT` validator processes. Each process (1..`$NODE_COUNT`) is started by running:
+### Lighthouse validator node(s)
 
-for each terminal in (1..`$NODE_COUNT`):
+The keys will be split up among the `$NODE_COUNT` validator processes. For
+each lighthouse validator process, you will need to run the following in
+a dedicated terminal:
+
+Note: `1 <= NODE_INDEX <= $NODE_COUNT`
 
 ```
 $ ./start_validator_client.sh [NODE_INDEX]
 ```
-
 

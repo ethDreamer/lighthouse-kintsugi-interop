@@ -4,7 +4,7 @@ rm -rf $VALIDATOR_DIR
 
 echo "Generating $VALIDATOR_COUNT validator keypairs..."
 
-$LCLI_BIN \
+$LCLI_BINARY \
 	insecure-validators \
 	--spec $SPEC \
 	--base-dir $VALIDATOR_DIR \
