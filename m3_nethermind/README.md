@@ -7,6 +7,7 @@ git clone https://github.com/NethermindEth/nethermind --recursive
 cd nethermind/src/Nethermind
 git checkout themerge_kintsugi
 dotnet build Nethermind.sln -c Release
+dotnet build Nethermind.sln -c Release # idk why it needs to be run twice..
 ```
 
 This will install `Nethermind.Runner` in `nethermind/src/Nethermind/Nethermind.Runner/bin/Release/net*/Nethermind.Runner`

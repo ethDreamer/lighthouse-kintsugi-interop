@@ -5,6 +5,8 @@ source ../globals.env
 DATADIR=./datadir
 rm -rf $DATADIR && mkdir $DATADIR
 
+export DOTNET_ROOT=$DOTNET_ROOT
+
 $NETHERMIND_RUNNER \
 	--config $PWD/kintsugi_m3.cfg \
 	--datadir $DATADIR \
