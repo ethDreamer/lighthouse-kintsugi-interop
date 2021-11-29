@@ -25,7 +25,6 @@
     "networkID": 1,
 	"chainId": 700,
 	"maxCodeSize": "0x6000",
-	"maxCodeSizeTransition": "0xa",
     "eip150Transition": "0x0",
     "eip155Transition": "0x0",
     "eip158Transition": "0x0",
@@ -39,8 +38,6 @@
     "eip145Transition": "0x0",
     "eip1014Transition": "0x0",
     "eip1052Transition": "0x0",
-    "eip1283Transition": "0x0",
-    "eip1283DisableTransition": "0x0",
     "eip152Transition": "0x0",
     "eip1108Transition": "0x0",
     "eip1344Transition": "0x0",
@@ -62,7 +59,7 @@
         "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
       }
     },
-    "difficulty": "0x0",
+    "difficulty": "0xFFFFF",
     "author": "0x0000000000000000000000000000000000000000",
     "timestamp": "0x0",
     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",

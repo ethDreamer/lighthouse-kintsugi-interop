@@ -1,2 +1,3 @@
 #!/bin/bash
-./geth --catalyst --datadir "./datadir" attach
+source ../globals.env
+$GETH_BINARY --catalyst --datadir "./datadir" attach

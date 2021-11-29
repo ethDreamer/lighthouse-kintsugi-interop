@@ -23,7 +23,7 @@
 	"timestamp":"0x0",
 	"extraData":"",
 	"gasLimit":"0x1C9C380",
-	"difficulty":"0x0",
+	"difficulty":"0xFFFFF",
 	"mixHash":"0x0000000000000000000000000000000000000000000000000000000000000000",
 	"coinbase":"0x0000000000000000000000000000000000000000",
 	"number":"0x0",
