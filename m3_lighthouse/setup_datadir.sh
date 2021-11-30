@@ -1,7 +1,7 @@
 #!/bin/bash
 source ./vars.env
 
-rm -rf $DATA_DIR
+rm -rf $DATADIR
 mkdir -p $TESTNET_DIR
 
 cd $TESTNET_DIR
