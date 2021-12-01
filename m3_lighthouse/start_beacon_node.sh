@@ -1,21 +1,24 @@
 source ./vars.env
 
-echo "Staring a beacon node using an execution engine at $LIGHTHOUSE_EE_ENDPOINT..."
+echo "Staring lighthouse beacon node using execution engine at $EXECUTION_ENDPOINT..."
 
 $LIGHTHOUSE_BINARY \
 	--spec $SPEC \
 	--testnet-dir $TESTNET_DIR \
 	--debug-level $DEBUG_LEVEL \
 	beacon_node \
-	--datadir $BEACON_DIR \
-	--enr-address 10.26.100.192 \
-	--enr-udp-port 9000 \
+	--datadir $DATADIR \
+	--enr-address  ${DISCOVERY_ADDRESS[lighthouse]} \
+	--enr-udp-port ${DISCOVERY_UDP[lighthouse]} \
+	--enr-tcp-port ${DISCOVERY_TCP[lighthouse]} \
+	--disable-enr-auto-update \
+	--port ${DISCOVERY_TCP[lighthouse]} \
+	--discovery-port ${DISCOVERY_UDP[lighthouse]} \
 	--dummy-eth1 \
 	--http \
-	--http-allow-sync-stalled \
 	--metrics \
 	--merge \
-	--execution-endpoints $LIGHTHOUSE_EE_ENDPOINT \
+	--execution-endpoints $EXECUTION_ENDPOINT \
 	--terminal-total-difficulty-override $TTD_OVERRIDE \
 
 

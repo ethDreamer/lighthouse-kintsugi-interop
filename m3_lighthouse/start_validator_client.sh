@@ -1,5 +1,5 @@
 if [ "$#" -lt 1 ]; then
-	echo "usage: $0 [NODE_INDEX]"
+	echo "usage: $(basename $0) [NODE_INDEX]"
 	exit 1
 fi
 

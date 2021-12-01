@@ -1,4 +1,5 @@
 #!/bin/bash
+source ../execution.env geth
 source ../globals.env
 
 DATADIR="./datadir"
@@ -27,10 +28,13 @@ echo -n $NODEKEY > $DATADIR/geth/nodekey
 
 $GETH_BINARY \
 	--catalyst \
-	--http --http.api "engine,eth" --http.port $GETH_HTTP_PORT \
+	--http --http.api "engine,eth" \
+	--http.addr "$JSON_RPC_LISTEN_ADDRESS" \
+	--http.port $JSON_RPC_LISTEN_PORT \
 	--datadir $DATADIR \
 	--allow-insecure-unlock \
 	--unlock "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b" \
 	--password "" \
-	--nodiscover console
+	--nodiscover \
+	console
 

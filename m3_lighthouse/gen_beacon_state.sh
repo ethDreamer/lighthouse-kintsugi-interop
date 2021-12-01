@@ -3,7 +3,6 @@ source ./vars.env
 rm -rf $TESTNET_DIR
 rm -rf $BEACON_DIR
 
-
 if [ -z ${GENESIS_BLOCK_HASH} ]; then
 echo "Retrieving genesis block from execution node..."
 GENESIS_BLOCK_HASH=$(curl \
@@ -12,7 +11,7 @@ GENESIS_BLOCK_HASH=$(curl \
 	-H "Content-Type: application/json" \
 	--data \
 	'{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["earliest",false],"id":1}' \
-	$LIGHTHOUSE_EE_ENDPOINT \
+	$EXECUTION_ENDPOINT \
 	| jq '.result.hash' \
 	| tr -d '"')
 else

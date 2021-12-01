@@ -3,6 +3,7 @@ source ./vars.env
 
 rm -rf $DATADIR
 mkdir -p $TESTNET_DIR
+mkdir -p $BEACON_DIR/ && cp -ra ./network $BEACON_DIR
 
 cd $TESTNET_DIR
 echo "[]" > ./boot_enr.yaml
