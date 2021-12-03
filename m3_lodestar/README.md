@@ -6,19 +6,17 @@ This contains the scripts required to run Lodestar in the M3 milestone.
 
 TODO
 
-### Set Variables in `../globals.env`
+### Set Variables in `config.env`
 
-- `LODESTAR_BINARY` # this is the location of the `lodestar` script in the repo
-- `TTD_OVERRIDE` # the terminal total difficulty (in decimal)
+- `LODESTAR_SCRIPT` # this is the location of the `lodestar` script in the repoa
+- `HTTP_LISTEN_ADDRESS` # bind address for beacon endpoint the validator will use
+- `HTTP_LISTEN_PORT` # port for beacon endpoint
+- `DISCOVERY_ADDRESS` # bind address for discovery
+- `DISCOVERY_UDP` # UDP port to listen for discovery
+- `DISCOVERY_TCP` # TCP port to listen for discovery
+- `EXECUTION_ENDPOINT` # set to the execution endpoint you want to use
 
-### Set Variables in `../networking.env` (optional)
-
-- `DISCOVERY_ADDRESS[lodestar]` # address to listen for discovery
-- `DISCOVERY_UDP[lodestar]` # UDP port to listen for discovery
-- `DISCOVERY_TCP[lodestar]` # TCP port to listen for discovery
-- `EE_ENDPOINTS[lodestar]` # set to the execution endpoint you want to use
-
-### Generate Universal Beacon State & Validator Keys (recommended)
+### Generate Universal Beacon State & Validator Keys
 
 Follow the instructions in `../eth2_gen` to generate a universal beacon state
 and validator keys. Once you've done that, run the following to setup the lodestar

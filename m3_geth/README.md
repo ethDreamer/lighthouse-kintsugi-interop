@@ -11,14 +11,12 @@ make
 
 This will install `geth` in `go-ethereum/build/bin/`
 
-### Set Variables in `../globals.env`
+### Set Variables in `config.env`
 
 - `GETH_BINARY` # set to path of geth binary you just built
-
-### Set Variables in `../networking.env` (optional)
-
-- `RPC_LISTEN_ADDRESS[geth]` # address to listen for incomming JSON-RPC requests
-- `RPC_LISTEN_PORT[geth]` # TCP port to listen for incomming JSON-RPC requests
+- `DISCOVERY_PORT` # port to listen on for discovery
+- `RPC_LISTEN_ADDRESS` # address to listen for incomming JSON-RPC requests
+- `RPC_LISTEN_PORT` # TCP port to listen for incomming JSON-RPC requests
 
 ### Geth Execution Engine
 

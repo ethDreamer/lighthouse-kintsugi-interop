@@ -2,9 +2,8 @@
 
 source ../globals.env
 
-rm -rf $PWD/eth2
-mkdir -p eth2/public eth2/private
-
+rm -rf $PWD/eth2/public
+mkdir -p eth2/public
 
 if [ -z ${GENESIS_TIME} ]; then
 GENESIS_TIME=$(echo "$(date +%s) - $(echo "$(date +%s) % 3600" | bc)" | bc)

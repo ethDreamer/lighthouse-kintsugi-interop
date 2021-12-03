@@ -4,15 +4,29 @@ if [ "$#" -lt 1 ]; then
 	exit 1
 fi
 
+LODESTAR_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $LODESTAR_DIR
+
+if [ ! -e ./config.env ]; then
+    echo "did not find ./config.env"
+    exit 1
+fi
+
+source ./config.env
+
+if [ ! -e $DATADIR ]; then
+    echo "Must run setup_datadir.sh before running this"
+    exit 1
+fi
+
 NODE="node_$1"
 
-source ./vars.env
+cd $(dirname $LODESTAR_SCRIPT)
 
-cd $(dirname $LODESTAR_BINARY)
-
-$LODESTAR_BINARY \
+$LODESTAR_SCRIPT \
 	--rootDir $DATADIR/validators/$NODE \
 	--paramsFile $DATADIR/eth2_config.yaml \
 	validator \
+    --server $BEACON_ENDPOINT
 
 

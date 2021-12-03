@@ -1,7 +1,16 @@
-source ./vars.env
+#!/bin/bash
 
-rm -rf $TESTNET_DIR
-rm -rf $BEACON_DIR
+LIGHTHOUSE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $LIGHTHOUSE_DIR
+
+if [ ! -e ./config.env ]; then
+    echo "did not find ./config.env"
+    exit 1
+fi
+
+source ./config.env
+
+rm -rf $DATADIR/testnet
 
 if [ -z ${GENESIS_BLOCK_HASH} ]; then
 echo "Retrieving genesis block from execution node..."
@@ -40,7 +49,7 @@ $LCLI_BINARY \
 	--interop-genesis-state \
 	--validator-count $VALIDATOR_COUNT \
 	--min-genesis-active-validator-count $VALIDATOR_COUNT \
-	--testnet-dir $TESTNET_DIR \
+	--testnet-dir $DATADIR/testnet \
 	--deposit-contract-address 0x0000000000000000000000000000000000000000 \
 	--deposit-contract-deploy-block 0 \
 	--eth1-block-hash $GENESIS_BLOCK_HASH \

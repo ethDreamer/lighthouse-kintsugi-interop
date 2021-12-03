@@ -1,6 +1,8 @@
 #!/bin/bash
 source ../globals.env
 
+rm -rf ./eth2/private && mkdir ./eth2/private
+
 PER_NODE=$(echo "$VALIDATOR_COUNT / $NODE_COUNT" | bc)
 NODE=0
 

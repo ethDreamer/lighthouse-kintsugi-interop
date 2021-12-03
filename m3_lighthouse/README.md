@@ -14,22 +14,17 @@ make install-lcli
 
 This will install `lighthouse` and `lcli` in `~/.cargo/bin`.
 
-### Set Variables in `../globals.env`
+### Set Variables in `config.env`
 
 - `LIGHTHOUSE_BINARY` # the defaults should work if you followed instructions above
-- `LCLI_BINARY`# (optional) the default should work if you followed instructions above
-- `VALIDATOR_COUNT` # the number of validators in the testnet
-- `NODE_COUNT` # the number of beacon nodes (or separate validator processes)
-- `TTD_OVERRIDE` # the terminal total difficulty (in decimal)
-- `GENESIS_BLOCK_HASH` # (optional) if empty, script will fetch from execution engine
-- `GENESIS_TIME` # (optional) if empty, script will round down to the start of the nearest hour
+- `LCLI_BINARY` # (optional) the default should work if you followed instructions above
+- `HTTP_LISTEN_ADDRESS` # address to bind to for beacon endpoint validator will use
+- `HTTP_LISTEN_PORT` # port to listen for beacon endpoint
+- `DISCOVERY_ADDRESS` # address to bind to for discovery
+- `DISCOVERY_TCP` # TCP port to listen for discovery
+- `DISCOVERY_UDP` # UDP port to listen for discovery
+- `EXECUTION_ENDPOINT` # set to the execution endpoint you want to use
 
-### Set Variables in `../networking.env` (optional)
-
-- `DISCOVERY_ADDRESS[lighthouse]` # address to listen for discovery
-- `DISCOVERY_UDP[lighthouse]` # UDP port to listen for discovery
-- `DISCOVERY_TCP[lighthouse]` # TCP port to listen for discovery
-- `EE_ENDPOINTS[lighthouse]` # set to the execution endpoint you want to use
 
 ### Generate Universal Beacon State & Validator Keys (recommended)
 
