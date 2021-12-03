@@ -21,7 +21,7 @@ source ./config.env
 echo "Staring a validator client $NODE_INDEX..."
 
 $LIGHTHOUSE_BINARY \
-	--debug-level $DEBUG_LEVEL \
+	--debug-level $LOG_LEVEL \
 	--datadir $DATADIR/validators/$SUFFIX_DIR \
 	vc \
 	--testnet-dir $DATADIR/testnet \

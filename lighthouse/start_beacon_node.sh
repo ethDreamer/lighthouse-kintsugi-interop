@@ -15,7 +15,7 @@ echo "Staring lighthouse beacon node using execution engine at $EXECUTION_ENDPOI
 $LIGHTHOUSE_BINARY \
     --spec $SPEC \
     --testnet-dir $DATADIR/testnet \
-    --debug-level $DEBUG_LEVEL \
+    --debug-level $LOG_LEVEL \
     beacon_node \
     --datadir $DATADIR \
     --enr-address  $DISCOVERY_ADDRESS \
