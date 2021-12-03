@@ -21,24 +21,23 @@ $LODESTAR_SCRIPT \
     --rootDir $DATADIR \
     --paramsFile $DATADIR/eth2_config.yaml \
     beacon \
-	--eth1.enabled false \
-	--api.rest.api '*' \
-	--api.rest.enabled true \
-	--api.rest.host $HTTP_LISTEN_ADDRESS \
-	--api.rest.port $HTTP_LISTEN_PORT \
-    --logLevel info \
+    --eth1.enabled false \
+    --api.rest.api '*' \
+    --api.rest.enabled true \
+    --api.rest.host $HTTP_LISTEN_ADDRESS \
+    --api.rest.port $HTTP_LISTEN_PORT \
+    --logLevel $LOG_LEVEL \
     --genesisStateFile $DATADIR/genesis.ssz \
     --enr.ip $DISCOVERY_ADDRESS \
     --enr.tcp $DISCOVERY_TCP \
     --enr.udp $DISCOVERY_UDP \
     --port $DISCOVERY_TCP \
     --discoveryPort $DISCOVERY_UDP \
-    --network.localMultiaddrs "/ip4/127.0.0.1/tcp/9000/p2p/16Uiu2HAm2JbZ2unKEs6A1QiKaFyKrZZgLkafNwzBgxyZARXgF5be" \
     --network.discv5.bootEnrs "$BOOT_ENRS" \
     --network.connectToDiscv5Bootnodes true \
-    --execution.urls "$EXECUTION_ENDPOINT"
-
-
-#    --network.bootMultiaddrs "/ip4/127.0.0.1/tcp/9000/p2p/16Uiu2HAm2JbZ2unKEs6A1QiKaFyKrZZgLkafNwzBgxyZARXgF5be" \
+    --eth1.enabled true \
+    --eth1.providerUrls "$EXECUTION_ENDPOINT" \
+    --execution.urls "$EXECUTION_ENDPOINT" \
+    --params.TERMINAL_TOTAL_DIFFICULTY $TTD_OVERRIDE
 
 

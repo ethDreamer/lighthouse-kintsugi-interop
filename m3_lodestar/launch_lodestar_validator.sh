@@ -27,6 +27,8 @@ $LODESTAR_SCRIPT \
 	--rootDir $DATADIR/validators/$NODE \
 	--paramsFile $DATADIR/eth2_config.yaml \
 	validator \
-    --server $BEACON_ENDPOINT
+	--logLevel $LOG_LEVEL \
+	--params.TERMINAL_TOTAL_DIFFICULTY $TTD_OVERRIDE \
+	--server $BEACON_ENDPOINT
 
 
