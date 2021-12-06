@@ -11,7 +11,14 @@ fi
 source ./config.env
 
 rm -rf $DATADIR
-NODEKEY="1edbb645cc15960e246929080cb5802d25a1130d9ef3137ea7c707988e1df7f8"
+
+if [ "$(basename $GETH_DIR)" != "geth" ]; then
+    echo "Running non-boot geth node"
+    if [ ! -e $GETH_DIR/../geth/enode.dat ]; then
+        echo "Error: must start geth boot node in ../geth before running this";
+        exit 1
+    fi
+fi
 
 # the cli flag is causing seg faults so..
 sed -i "s/terminalTotalDifficulty.*/terminalTotalDifficulty\":$TTD_OVERRIDE/" ./genesis.json
@@ -23,7 +30,7 @@ $GETH_BINARY \
     init \
     genesis.json
 
-$GETH_BINARY \
+echo -e "\n" | $GETH_BINARY \
     --catalyst \
     --http --ws -http.api "engine" \
     --datadir $DATADIR \
@@ -31,7 +38,26 @@ $GETH_BINARY \
     import \
     sk.json
 
-echo -n $NODEKEY > $DATADIR/geth/nodekey
+if [ "$(basename $GETH_DIR)" != "geth" ]; then
+    cat <<EOF > $DATADIR/geth/static-nodes.json
+[
+    "$(cat $GETH_DIR/../geth/enode.dat)"
+]
+EOF
+else
+    # need to save geth boot node id
+    echo -e "\nadmin.nodeInfo.enode" | $GETH_BINARY \
+        --catalyst \
+        --verbosity 0 \
+        --port $DISCOVERY_PORT \
+        --datadir $DATADIR \
+        console |& grep "enode:" | \
+        sed 's/",*//g' > $GETH_DIR/enode.dat
+    cleanup() {
+        rm -f $GETH_DIR/enode.dat
+    }
+    trap 'cleanup' SIGINT SIGTERM EXIT
+fi
 
 $GETH_BINARY \
     --catalyst \
@@ -51,4 +77,5 @@ $GETH_BINARY \
     --password "" \
     --nodiscover \
     console
+
 

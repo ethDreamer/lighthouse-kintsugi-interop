@@ -10,13 +10,25 @@ fi
 
 source ./config.env
 
+if [ ! -e $NETHERMIND_DIR/../geth/enode.dat ]; then
+    echo "Error: must start geth boot node in ../geth before running this";
+    exit 1
+fi
+
 rm -rf $DATADIR && mkdir $DATADIR
 
-export DOTNET_ROOT=$DOTNET_ROOT
+cat <<EOF > $DATADIR/static-nodes.json
+[
+    "$(cat $NETHERMIND_DIR/../geth/enode.dat)",
+]
+EOF
 
+export DOTNET_ROOT=$DOTNET_ROOT
 $NETHERMIND_RUNNER \
     --config $PWD/kintsugi_m3.cfg \
     --datadir $DATADIR \
+    --Init.StaticNodesPath "$DATADIR/static-nodes.json" \
+    --Init.BaseDbPath "$DATADIR/nethermind_db/themerge_kintsugi_testvectors" \
     --JsonRpc.Host "$RPC_LISTEN_ADDRESS" \
     --JsonRpc.Port $RPC_LISTEN_PORT \
     --Network.DiscoveryPort $DISCOVERY_UDP \
