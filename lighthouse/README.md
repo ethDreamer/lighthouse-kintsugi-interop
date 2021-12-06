@@ -25,11 +25,9 @@ This will install `lighthouse` and `lcli` in `~/.cargo/bin`.
 - `DISCOVERY_UDP` # UDP port to listen for discovery
 - `EXECUTION_ENDPOINT` # set to the execution endpoint you want to use
 
+### Generate Universal Beacon State & Validator Keys
 
-### Generate Universal Beacon State & Validator Keys (recommended)
-
-If you want to spin up a testnet with more than just lighthouse consensus clients,
-you'll need to use the tools in `../eth2_gen`. Follow instructions in that directory
+You'll need to use the tools in `../eth2_gen`. Follow instructions in that directory
 to generate necessary configuration files and then come back here and run the
 following to setup the ligthouse directories:
 ```
@@ -37,22 +35,9 @@ $ ./setup_datadir.sh
 ```
 If you simply remove the `$DATADIR`, you will undo this command.
 
-### Generate Lighthouse-only Beacon State / Validator Keys with `lcli` (optional)
+### Start the Lighthouse Boot Node
 
-If you only want to use lighthouse as a consensus node and you don't want to install
-the dependencies for generating a universal configuration, you can use `lcli`.
-You can generate a lighthouse only beacon state using the following command.
-Note: If `GENESIS_BLOCK_HASH` is not set, you must start the exection engine that
-lighthouse will point to before running this:
-```
-$ ./gen_beacon_state.sh
-```
-
-To generate lighthouse-only validator keys run:
-```
-$ ./gen_validator_keys.sh
-```
-If you simply remove the `$DATADIR`, you will undo these commands.
+See instructions in `../consensus_bootnode`
 
 ### Start Lighthouse Beacon Node
 
