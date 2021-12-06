@@ -10,13 +10,13 @@ fi
 
 source ./config.env
 
-if [ ! -e $BOOTNODE_DIR/../eth2_gen/eth2 ]; then
+if [ ! -e $BOOTNODE_DIR/../genesis/eth2 ]; then
     echo "Error: you must generate beacon state before running this script"
     exit 1
 fi
 
-if [ ! -e ../eth2_gen/eth2/public ]; then
-    echo "Error: beacon state not generated in ../eth2_gen"
+if [ ! -e ../genesis/eth2/public ]; then
+    echo "Error: beacon state not generated in ../genesis"
     exit 1
 fi
 
@@ -25,8 +25,8 @@ mkdir -p $DATADIR/lighthouse/beacon/ && \
 	mkdir -p $DATADIR/lighthouse/testnet
 
 cd $DATADIR/lighthouse/testnet && \
-	cp $BOOTNODE_DIR/../eth2_gen/eth2_config.yaml ./config.yaml && \
-	cp $BOOTNODE_DIR/../eth2_gen/eth2/public/genesis.ssz . && \
+	cp $BOOTNODE_DIR/../genesis/eth2_config.yaml ./config.yaml && \
+	cp $BOOTNODE_DIR/../genesis/eth2/public/genesis.ssz . && \
 	echo "0" > deploy_block.txt
 
 

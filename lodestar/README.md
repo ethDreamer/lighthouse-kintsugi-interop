@@ -18,7 +18,7 @@ TODO
 
 ### Generate Universal Beacon State & Validator Keys
 
-Follow the instructions in `../eth2_gen` to generate a universal beacon state
+Follow the instructions in `../genesis` to generate a universal beacon state
 and validator keys. Once you've done that, run the following to setup the lodestar
 directories:
 ```

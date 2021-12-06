@@ -15,7 +15,7 @@ You need to build the `lighthouse` binary. See instructions in `../lighthouse`
 
 ### Generate Universal Beacon State & Validator Keys
 
-You'll need to use the scripts in `../eth2_gen`. Follow instructions in that directory
+You'll need to use the scripts in `../genesis`. Follow instructions in that directory
 to generate necessary configuration files and then come back here and run the
 following to setup the boot node directories:
 ```

@@ -27,7 +27,7 @@ This will install `lighthouse` and `lcli` in `~/.cargo/bin`.
 
 ### Generate Universal Beacon State & Validator Keys
 
-You'll need to use the tools in `../eth2_gen`. Follow instructions in that directory
+You'll need to use the tools in `../genesis`. Follow instructions in that directory
 to generate necessary configuration files and then come back here and run the
 following to setup the ligthouse directories:
 ```

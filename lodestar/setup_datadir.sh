@@ -9,33 +9,33 @@ fi
 
 source ./config.env
 
-if [ ! -e ../eth2_gen/eth2 ]; then
+if [ ! -e ../genesis/eth2 ]; then
     echo "Error: you must generate beacon state and validators before running this script"
     exit 1
 fi
 
-if [ ! -e ../eth2_gen/eth2/public ]; then
-    echo "Error: beacon state not generated in ../eth2_gen"
+if [ ! -e ../genesis/eth2/public ]; then
+    echo "Error: beacon state not generated in ../genesis"
     exit 1
 fi
 
 rm -rf $DATADIR
 mkdir -p $DATADIR && \
 	cd $DATADIR && \
-	cp ../../eth2_gen/eth2_config.yaml . && \
-	cp ../../eth2_gen/eth2/public/genesis.ssz . && \
+	cp ../../genesis/eth2_config.yaml . && \
+	cp ../../genesis/eth2/public/genesis.ssz . && \
 	cd - 1>/dev/null
 
 cd $LODESTAR_DIR
-if [ ! -e ../eth2_gen/eth2/private ]; then
-    echo "Error: validator keys not generated in ../eth2_gen"
+if [ ! -e ../genesis/eth2/private ]; then
+    echo "Error: validator keys not generated in ../genesis"
     exit 1
 fi
 
 mkdir -p $DATADIR/validators
 cd $DATADIR/validators
 
-for full in $(echo ../../../eth2_gen/eth2/private/*); do
+for full in $(echo ../../../genesis/eth2/private/*); do
 	base=$(basename $full);
 	mkdir $base
 	cd $base
