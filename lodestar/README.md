@@ -35,11 +35,11 @@ $ ./launch_lodestar_beacon.sh
 
 ### Start Lodestar Validator Node(s)
 
-The keys will be split up among the `$NODE_COUNT` validator processes. For
+The keys will be split up among the `$VALIDATOR_NODE_COUNT` validator processes. For
 each lodestar validator process, you will need to run the following in
 a dedicated terminal:
 
-Note: `1 <= NODE_INDEX <= $NODE_COUNT`
+Note: `1 <= NODE_INDEX <= $VALIDATOR_NODE_COUNT`
 
 ```
 $ ./launch_lodestar_validator.sh [NODE_INDEX]

@@ -3,10 +3,10 @@ source ../globals.env
 
 rm -rf ./eth2/private && mkdir ./eth2/private
 
-PER_NODE=$(echo "$VALIDATOR_COUNT / $NODE_COUNT" | bc)
+PER_NODE=$(echo "$GENESIS_VALIDATORS / $VALIDATOR_NODE_COUNT" | bc)
 NODE=0
 
-while [ $NODE -lt $NODE_COUNT ]; do
+while [ $NODE -lt $VALIDATOR_NODE_COUNT ]; do
 	SRC_MIN=$(echo "$NODE * $PER_NODE" | bc);
 	SRC_MAX=$(echo "$SRC_MIN + $PER_NODE" | bc);
 	NODE=$((NODE+1))

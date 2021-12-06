@@ -48,11 +48,11 @@ $ ./start_beacon_node.sh
 
 ### Lighthouse Validator Node(s)
 
-The keys will be split up among the `$NODE_COUNT` validator processes. For
+The keys will be split up among the `$VALIDATOR_NODE_COUNT` validator processes. For
 each lighthouse validator process, you will need to run the following in
 a dedicated terminal:
 
-Note: `1 <= NODE_INDEX <= $NODE_COUNT`
+Note: `1 <= NODE_INDEX <= $VALIDATOR_NODE_COUNT`
 
 ```
 $ ./start_validator_client.sh [NODE_INDEX]

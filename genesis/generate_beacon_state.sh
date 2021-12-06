@@ -14,10 +14,10 @@ echo "GENESIS_TIME[$GENESIS_TIME] GENESIS_HEX[$GENESIS_HEX]"
 # update eth2 config
 sed -i "s/PRESET_BASE:.*/PRESET_BASE: \"$SPEC\"/" ./eth2_config.yaml
 sed -i \
-	"s/MIN_GENESIS_ACTIVE_VALIDATOR_COUNT:.*/MIN_GENESIS_ACTIVE_VALIDATOR_COUNT: $VALIDATOR_COUNT/" \
+	"s/MIN_GENESIS_ACTIVE_VALIDATOR_COUNT:.*/MIN_GENESIS_ACTIVE_VALIDATOR_COUNT: $GENESIS_VALIDATORS/" \
 	./eth2_config.yaml
 echo "- mnemonic: \"$VALIDATOR_MNEMONIC\"" > ./genesis_validators.yaml
-echo "  count: $VALIDATOR_COUNT" >> ./genesis_validators.yaml
+echo "  count: $GENESIS_VALIDATORS" >> ./genesis_validators.yaml
 
 eth2-testnet-genesis phase0 \
 	 --preset-phase0 $SPEC --preset-altair $SPEC --preset-merge $SPEC \

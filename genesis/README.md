@@ -8,8 +8,8 @@
 ### Set Variables in `../globals.env`
 
 - `SPEC` # 'mainnet' or 'minimal'
-- `VALIDATOR_COUNT` # validators included at genesis
-- `NODE_COUNT` # number of validator nodes (ensure `VALIDATOR_COUNT` % `NODE_COUNT` == 0)
+- `GENESIS_VALIDATORS` # validators included at genesis
+- `VALIDATOR_NODE_COUNT` # number of validator nodes (ensure `GENESIS_VALIDATORS` % `VALIDATOR_NODE_COUNT` == 0)
 - `TTD_OVERRIDE` # Terminal Total Difficulty Override (in decimal)
 - `VALIDATOR_MNEMONIC` # the mnemonic from which to generate the validators
 - `GENESIS_TIME` # (optional) if empty, script will round down to start of the nearest hour
