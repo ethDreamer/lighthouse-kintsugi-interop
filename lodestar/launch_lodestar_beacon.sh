@@ -8,20 +8,18 @@ if [ ! -e ./config.env ]; then
 fi
 
 source ./config.env
+source ../bootnode.env
 
 if [ ! -e $DATADIR ]; then
     echo "Must run setup_datadir.sh before running this"
     exit 1
 fi
 
-BOOT_ENRS="enr:-Ly4QPOzB5o4ldodVGk2MK9ms-E8NL6NYHBz8xGBiy-am9vYZ0zHX7TQDM--XtLb48jg9N6oOdMvwBmZ3DtDFY9dmzcCh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCSRWn8AgAAAf__________gmlkgnY0gmlwhH8AAAGJc2VjcDI1NmsxoQJmMbzA19NBqAFPuBQZiLsQT-BQ1FOQyzElspkbYm2JSYhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
-
 cd $(dirname $LODESTAR_SCRIPT)
 $LODESTAR_SCRIPT \
     --rootDir $DATADIR \
     --paramsFile $DATADIR/eth2_config.yaml \
     beacon \
-    --eth1.enabled false \
     --api.rest.api '*' \
     --api.rest.enabled true \
     --api.rest.host $HTTP_LISTEN_ADDRESS \
@@ -33,11 +31,9 @@ $LODESTAR_SCRIPT \
     --enr.udp $DISCOVERY_UDP \
     --port $DISCOVERY_TCP \
     --discoveryPort $DISCOVERY_UDP \
-    --network.discv5.bootEnrs "$BOOT_ENRS" \
-    --network.connectToDiscv5Bootnodes true \
+    --network.discv5.bootEnrs "$BOOT_NODE_ENR" \
     --eth1.enabled true \
     --eth1.providerUrls "$EXECUTION_ENDPOINT" \
     --execution.urls "$EXECUTION_ENDPOINT" \
     --params.TERMINAL_TOTAL_DIFFICULTY $TTD_OVERRIDE
-
 

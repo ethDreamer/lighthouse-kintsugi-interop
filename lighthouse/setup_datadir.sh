@@ -10,14 +10,14 @@ fi
 
 source ./config.env
 
-if [ ! -e ../eth2_gen/eth2 ]; then
+if [ ! -e $LIGHTHOUSE_DIR/../eth2_gen/eth2 ]; then
     echo "Error: you must generate beacon state and validators before running this script"
     exit 1
 fi
 
 rm -rf $DATADIR
 mkdir -p $DATADIR/testnet
-mkdir -p $DATADIR/beacon && cp -ra ./network $DATADIR/beacon/
+mkdir -p $DATADIR/beacon
 mkdir -p $DATADIR/validators
 
 if [ ! -e ../eth2_gen/eth2/public ]; then
@@ -27,9 +27,9 @@ fi
 
 cd $DATADIR/testnet
 echo "[]" > ./boot_enr.yaml
-cp ../../../eth2_gen/eth2_config.yaml ./config.yaml
+cp $LIGHTHOUSE_DIR/../eth2_gen/eth2_config.yaml ./config.yaml
 echo "0" > deploy_block.txt
-cp ../../../eth2_gen/eth2/public/genesis.ssz .
+cp $LIGHTHOUSE_DIR/../eth2_gen/eth2/public/genesis.ssz .
 
 cd $LIGHTHOUSE_DIR
 if [ ! -e ../eth2_gen/eth2/private ]; then
@@ -38,12 +38,12 @@ if [ ! -e ../eth2_gen/eth2/private ]; then
 fi
 
 cd $DATADIR/validators
-for full in $(echo ../../../eth2_gen/eth2/private/*); do
+for full in $(echo $LIGHTHOUSE_DIR/../eth2_gen/eth2/private/*); do
 	base=$(basename $full);
 	mkdir $base
 	cd $base
-	cp -r ../$full/secrets .
-	cp -r ../$full/keys ./validators
+	cp -r $full/secrets .
+	cp -r $full/keys ./validators
 	cd ..
 done
 

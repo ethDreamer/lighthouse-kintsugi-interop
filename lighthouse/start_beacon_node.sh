@@ -9,6 +9,7 @@ if [ ! -e ./config.env ]; then
 fi
 
 source ./config.env
+source ../bootnode.env
 
 echo "Staring lighthouse beacon node using execution engine at $EXECUTION_ENDPOINT..."
 
@@ -18,6 +19,7 @@ $LIGHTHOUSE_BINARY \
     --debug-level $LOG_LEVEL \
     beacon_node \
     --datadir $DATADIR \
+    --boot-nodes $BOOT_NODE_ENR \
     --enr-address  $DISCOVERY_ADDRESS \
     --enr-udp-port $DISCOVERY_UDP \
     --enr-tcp-port $DISCOVERY_TCP \

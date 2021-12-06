@@ -35,9 +35,15 @@ echo -n $NODEKEY > $DATADIR/geth/nodekey
 
 $GETH_BINARY \
     --catalyst \
-    --http --http.api "engine,eth" \
-    --http.addr "$RPC_LISTEN_ADDRESS" \
-    --http.port $RPC_LISTEN_PORT \
+    --verbosity $VERBOSITY \
+    --http \
+        --http.api "eth,net,engine" \
+        --http.addr "$HTTP_RPC_LISTEN_ADDRESS" \
+        --http.port $HTTP_RPC_LISTEN_PORT \
+    --ws \
+        --ws.api "eth,net,engine" \
+        --ws.addr "$WS_LISTEN_ADDRESS" \
+        --ws.port $WS_LISTEN_PORT \
     --port $DISCOVERY_PORT \
     --datadir $DATADIR \
     --allow-insecure-unlock \
