@@ -44,10 +44,6 @@ for full in $(echo ../../../genesis/eth2/private/*); do
 	cd ..
 done
 
+cd $(dirname $LODESTAR_SCRIPT)
+$LODESTAR_SCRIPT --rootDir $DATADIR --paramsFile $DATADIR/eth2_config.yaml init
 
-
-#cd $(dirname $LODESTAR_BINARY)
-#$LODESTAR_BINARY --rootDir $DATADIR --paramsFile $DATADIR/eth2_config.yaml init
-
-cd $LODESTAR_DIR
-cp ./network/* $DATADIR
