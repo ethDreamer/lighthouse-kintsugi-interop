@@ -6,7 +6,7 @@ rm -rf $PWD/eth2/public
 mkdir -p eth2/public
 
 if [ -z ${GENESIS_TIME} ]; then
-GENESIS_TIME=$(echo "$(date +%s) - $(echo "$(date +%s) % 3600" | bc)" | bc)
+    GENESIS_TIME=$(($(date +%s) - $(($(date +%s) % 3600))))
 fi
 GENESIS_HEX=$(printf '0x%x\n' $GENESIS_TIME)
 echo "GENESIS_TIME[$GENESIS_TIME] GENESIS_HEX[$GENESIS_HEX]"

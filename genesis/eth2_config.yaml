@@ -8,7 +8,7 @@ PRESET_BASE: "mainnet"
 # Genesis
 # ---------------------------------------------------------------
 # [customized]
-MIN_GENESIS_ACTIVE_VALIDATOR_COUNT: 64
+MIN_GENESIS_ACTIVE_VALIDATOR_COUNT: 96
 # Jan 3, 2020
 MIN_GENESIS_TIME: 1606824000
 # Highest byte set to 0x01 to avoid collisions with mainnet versioning

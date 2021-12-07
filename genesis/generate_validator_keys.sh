@@ -3,12 +3,12 @@ source ../globals.env
 
 rm -rf ./eth2/private && mkdir ./eth2/private
 
-PER_NODE=$(echo "$GENESIS_VALIDATORS / $VALIDATOR_NODE_COUNT" | bc)
+PER_NODE=$(($GENESIS_VALIDATORS / $VALIDATOR_NODE_COUNT))
 NODE=0
 
 while [ $NODE -lt $VALIDATOR_NODE_COUNT ]; do
-	SRC_MIN=$(echo "$NODE * $PER_NODE" | bc);
-	SRC_MAX=$(echo "$SRC_MIN + $PER_NODE" | bc);
+	SRC_MIN=$(($NODE * $PER_NODE));
+	SRC_MAX=$(($SRC_MIN + $PER_NODE));
 	NODE=$((NODE+1))
 	echo "Generating keys for node_$NODE"
 	eth2-val-tools keystores \
