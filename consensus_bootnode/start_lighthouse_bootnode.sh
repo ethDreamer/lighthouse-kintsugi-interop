@@ -24,12 +24,13 @@ $LIGHTHOUSE_BINARY \
     --testnet-dir $DATADIR/lighthouse/testnet \
     --debug-level $LOG_LEVEL \
     boot_node \
+    --disable-packet-filter \
     --datadir $DATADIR/lighthouse \
     --listen-address $BOOT_NODE_LISTEN_ADDRESS \
-	--port $BOOT_NODE_PORT \
+    --port $BOOT_NODE_PORT \
     --enr-port $BOOT_NODE_PORT \
     --terminal-total-difficulty-override $TTD_OVERRIDE \
-	$BOOT_NODE_IP
+    $BOOT_NODE_IP
 
 cleanup
 
