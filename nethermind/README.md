@@ -21,10 +21,11 @@ This will install `Nethermind.Runner` in `nethermind/src/Nethermind/Nethermind.R
 - `RPC_LISTEN_ADDRESS` # address to bind to for JSON-RPC endpoint
 - `PRC_LISTEN_PORT` # port to listen on for JSON-RPC endpoint
 
-### Start Geth first (for now)
+### Start Geth first
 
-For now, geth is needed to mine the blocks. See instructions in `../m3_geth`. Once geth is running, nethermind
-should find it as a peer.
+geth is needed both to mine the blocks and act as a bootnode for the execution engines. See
+instructions in `../geth`. Once the geth bootnode is running, nethermind should find it as
+a peer.
 
 ### Nethermind Execution Engine
 
