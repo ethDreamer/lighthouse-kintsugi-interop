@@ -4,11 +4,18 @@ This contains the scripts required to run Lodestar in the M3 milestone.
 
 ### Build Instructions
 
-TODO
+```
+git clone https://github.com/chainsafe/lodestar.git
+cd lodestar
+lerna bootstrap
+yarn build
+```
+
+Once this is done you should be able to run `./lodestar --help`
 
 ### Set Variables in `config.env`
 
-- `LODESTAR_SCRIPT` # this is the location of the `lodestar` script in the repoa
+- `LODESTAR_SCRIPT` # this is the location of the `lodestar` script in the root of the lodestar repo
 - `HTTP_LISTEN_ADDRESS` # bind address for beacon endpoint the validator will use
 - `HTTP_LISTEN_PORT` # port for beacon endpoint
 - `DISCOVERY_ADDRESS` # bind address for discovery

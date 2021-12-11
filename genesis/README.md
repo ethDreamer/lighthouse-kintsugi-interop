@@ -5,6 +5,29 @@
 - [eth2-testnet-genesis](https://github.com/protolambda/eth2-testnet-genesis)
 - [eth2-val-tools](https://github.com/protolambda/eth2-val-tools)
 
+### Build Instructions
+
+Note: as of this writing there's a bug in the latest version of `eth2-val-tools` so you'll need to checkout a commit before
+that bug was introduced. I chose `e70f1885debc1bf3f51e41fc5af79e83476627c2`.
+
+```
+git clone git@github.com:protolambda/eth2-testnet-genesis.git
+cd eth2-testnet-genesis
+go build .
+cd ..
+git clone git@github.com:protolambda/eth2-val-tools.git
+cd eth2-val-tools
+git checkout e70f1885debc1bf3f51e41fc5af79e83476627c2 # see note above
+go build .
+```
+
+This will create two binaries `eth2-testnet-geneis` & `eth2-val-tools` in their respective repos.
+
+### Set Variables in `./config.env`
+
+- `ETH2_VAL_TOOLS_BINARY` # path to `eth2-val-tools` binary
+- `ETH2_TESTNET_GENESIS_BINARY` # path to `eth2-testnet-genesis` binary
+
 ### Set Variables in `../globals.env`
 
 - `SPEC` # 'mainnet' or 'minimal'

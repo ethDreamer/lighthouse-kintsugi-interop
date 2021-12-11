@@ -32,7 +32,7 @@ $NIMBUS_BEACON_BINARY \
 	--bootstrap-node="$BOOT_NODE_ENR" \
 	--subscribe-all-subnets \
 	--rest \
-	--max-peers=2 \
+	--max-peers=5 \
 	--rest-address="$REST_ADDRESS" \
 	--rest-port=$REST_PORT
 
