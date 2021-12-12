@@ -27,6 +27,7 @@ while [ $NODE -lt $VALIDATOR_NODE_COUNT ]; do
 	echo "Generating keys for node_$NODE"
 	$ETH2_VAL_TOOLS_BINARY keystores \
 	  --out-loc "eth2/private/node_$NODE" \
+	  --prysm-pass="foobar" \
 	  --source-min=$SRC_MIN \
 	  --source-max=$SRC_MAX \
 	  --source-mnemonic="$VALIDATOR_MNEMONIC"
