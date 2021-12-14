@@ -26,6 +26,7 @@ $PRYSM_BEACON_BINARY \
 	--interop-genesis-state $DATADIR/network/genesis.ssz \
 	--verbosity $VERBOSITY \
 	--network-id 1 \
+	--deposit-contract 0x4242424242424242424242424242424242424242 \
 	--p2p-tcp-port $DISCOVERY_TCP \
 	--p2p-udp-port $DISCOVERY_UDP \
 	--p2p-local-ip $DISCOVERY_ADDRESS \
