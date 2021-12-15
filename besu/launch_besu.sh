@@ -15,7 +15,23 @@ if [ ! -e $BESU_DIR/../geth/enode.dat ]; then
     exit 1
 fi
 
-rm -rf $DATADIR && mkdir $DATADIR
+if [ ! -e $BESU_BINARY ]; then
+	echo "Error: file '$BESU_BINARY' not found."
+	echo "Ensure \$BESU_BINARY is set correctly in config.env"
+	exit 1
+fi
+
+rm -rf $DATADIR && mkdir -p $DATADIR/network
+
+if [[ "$ETH1_CONSENSUS_ALGORITHM" == "clique" ]]; then
+	cp ../genesis/network/eth1_config.clique.yaml $DATADIR/network/genesis.json
+elif [[ "$ETH1_CONSENSUS_ALGORITHM" == "ethash" ]]; then
+	cp ../genesis/network/eth1_config.ethash.yaml $DATADIR/network/genesis.json
+else
+	echo "Error Unrecognized consensus algorithm: '$ETH1_CONSENSUS_ALGORITHM'"
+	echo "Ensure \$ETH1_CONSENSUS_ALGORITHM is propertly set in globals.env"
+	exit 1;
+fi
 
 #BOOTNODE=$(cat $BESU_DIR/../geth/enode.dat)
 cat <<EOF > $DATADIR/static-nodes.json
@@ -34,8 +50,8 @@ $BESU_BINARY \
 	--p2p-port=$DISCOVERY_PORT \
 	--Xmerge-support=true \
 	--miner-coinbase fe3b557e8fb62b89f4916b721be55ceb828dbd73 \
-	--genesis-file=$BESU_DIR/genesis.json \
-	--network-id=1
+	--genesis-file=$DATADIR/network/genesis.json \
+	--network-id=700
 
 
 

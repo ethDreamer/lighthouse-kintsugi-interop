@@ -18,6 +18,12 @@ fi
 
 source ./config.env
 
+if [ ! -e $LIGHTHOUSE_BINARY ]; then
+	echo "Error: file '$LIGHTHOUSE_BINARY' not found."
+	echo "Ensure \$LIGHTHOUSE_BINARY is set correctly in config.env"
+	exit 1
+fi
+
 echo "Staring a validator client $NODE_INDEX..."
 
 $LIGHTHOUSE_BINARY \
@@ -26,6 +32,6 @@ $LIGHTHOUSE_BINARY \
 	vc \
 	--testnet-dir $DATADIR/testnet \
 	--init-slashing-protection \
-	--beacon-nodes $BEACON_ENDPOINT \
+	--beacon-nodes $BEACON_ENDPOINT
 
 

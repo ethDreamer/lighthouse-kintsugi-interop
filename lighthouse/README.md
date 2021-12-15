@@ -7,7 +7,7 @@ This contains the scripts required to run Lighthouse in the M3 milestone.
 ```bash
 git clone git@github.com:sigp/lighthouse.git
 cd lighthouse
-git checkout kintsugi
+git checkout unstable
 make
 make install-lcli
 ```

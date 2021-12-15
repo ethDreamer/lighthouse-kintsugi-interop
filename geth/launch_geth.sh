@@ -10,7 +10,13 @@ fi
 
 source ./config.env
 
-rm -rf $DATADIR
+if [ ! -e $GETH_BINARY ]; then
+	echo "Error: file '$GETH_BINARY' not found."
+	echo "Ensure \$GETH_BINARY is set correctly in config.env"
+	exit 1
+fi
+
+rm -rf $DATADIR && mkdir -p $DATADIR/network
 
 if [ "$(basename $GETH_DIR)" != "geth" ]; then
     echo "Running non-boot geth node"
@@ -20,18 +26,30 @@ if [ "$(basename $GETH_DIR)" != "geth" ]; then
     fi
 fi
 
+if [[ "$ETH1_CONSENSUS_ALGORITHM" == "clique" ]]; then
+	cp ../genesis/network/eth1_config.clique.yaml $DATADIR/network/genesis.json
+elif [[ "$ETH1_CONSENSUS_ALGORITHM" == "ethash" ]]; then
+	cp ../genesis/network/eth1_config.ethash.yaml $DATADIR/network/genesis.json
+else
+	echo "Error Unrecognized consensus algorithm: '$ETH1_CONSENSUS_ALGORITHM'"
+	echo "Ensure \$ETH1_CONSENSUS_ALGORITHM is propertly set in globals.env"
+	exit 1;
+fi
+
 # the cli flag is causing seg faults so..
-sed -i "s/terminalTotalDifficulty.*/terminalTotalDifficulty\":$TTD_OVERRIDE/" ./genesis.json
+sed -i "s/terminalTotalDifficulty.*/terminalTotalDifficulty\":$TTD_OVERRIDE,/" $DATADIR/network/genesis.json
 
 $GETH_BINARY \
     --catalyst \
     --http --ws -http.api "engine" \
+    --networkid 700 \
     --datadir $DATADIR \
     init \
-    genesis.json
+    $DATADIR/network/genesis.json
 
 echo -e "\n" | $GETH_BINARY \
     --catalyst \
+    --networkid 700 \
     --http --ws -http.api "engine" \
     --datadir $DATADIR \
     account \
@@ -49,6 +67,7 @@ else
     echo -e "\nadmin.nodeInfo.enode" | $GETH_BINARY \
         --catalyst \
         --verbosity 0 \
+        --networkid 700 \
         --port $DISCOVERY_PORT \
         --datadir $DATADIR \
         console |& grep "enode:" | \
@@ -62,6 +81,7 @@ fi
 $GETH_BINARY \
     --catalyst \
     --verbosity $VERBOSITY \
+    --networkid 700 \
     --http \
         --http.api "eth,net,engine" \
         --http.addr "$HTTP_RPC_LISTEN_ADDRESS" \

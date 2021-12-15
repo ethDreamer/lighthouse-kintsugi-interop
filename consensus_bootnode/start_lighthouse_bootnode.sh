@@ -15,6 +15,12 @@ if [ ! -e $DATADIR ]; then
 	exit 1
 fi
 
+if [ ! -e $LIGHTHOUSE_BINARY ]; then
+	echo "Error: file '$LIGHTHOUSE_BINARY' not found."
+	echo "Ensure \$LIGHTHOUSE_BINARY is set correctly in config.env"
+	exit 1
+fi
+
 cleanup() {
 	rm -rf $DATADIR/lighthouse/beacon/network
 }

@@ -15,6 +15,12 @@ if [ ! -e $DATADIR ]; then
     exit 1
 fi
 
+if [ ! -e $NIMBUS_BEACON_BINARY ]; then
+	echo "Error: file '$NIMBUS_BEACON_BINARY' not found."
+	echo "Ensure \$NIMBUS_BEACON_BINARY is set correctly in config.env"
+	exit 1
+fi
+
 $NIMBUS_BEACON_BINARY \
 	--data-dir="$DATADIR/beacon" \
 	--network="$DATADIR/network" \

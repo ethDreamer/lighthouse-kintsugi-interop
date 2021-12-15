@@ -10,7 +10,7 @@ fi
 
 source ./config.env
 
-if [ ! -e $LIGHTHOUSE_DIR/../genesis/eth2 ]; then
+if [ ! -e $LIGHTHOUSE_DIR/../genesis/generate ]; then
     echo "Error: you must generate beacon state and validators before running this script"
     exit 1
 fi
@@ -20,25 +20,25 @@ mkdir -p $DATADIR/testnet
 mkdir -p $DATADIR/beacon
 mkdir -p $DATADIR/validators
 
-if [ ! -e ../genesis/eth2/public ]; then
+if [ ! -e ../genesis/generate/public ]; then
     echo "Error: beacon state not generated in ../genesis"
     exit 1
 fi
 
 cd $DATADIR/testnet
 echo "[]" > ./boot_enr.yaml
-cp $LIGHTHOUSE_DIR/../genesis/eth2_config.yaml ./config.yaml
+cp $LIGHTHOUSE_DIR/../genesis/generate/eth2_config.yaml ./config.yaml
 echo "0" > deploy_block.txt
-cp $LIGHTHOUSE_DIR/../genesis/eth2/public/genesis.ssz .
+cp $LIGHTHOUSE_DIR/../genesis/generate/public/genesis.ssz .
 
 cd $LIGHTHOUSE_DIR
-if [ ! -e ../genesis/eth2/private ]; then
+if [ ! -e ../genesis/generate/private ]; then
     echo "Error: validator keys not generated in ../genesis"
     exit 1
 fi
 
 cd $DATADIR/validators
-for full in $(echo $LIGHTHOUSE_DIR/../genesis/eth2/private/*); do
+for full in $(echo $LIGHTHOUSE_DIR/../genesis/generate/private/*); do
 	base=$(basename $full);
 	mkdir $base
 	cd $base

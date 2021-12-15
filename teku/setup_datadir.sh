@@ -8,12 +8,12 @@ if [ ! -e ./config.env ]; then
 fi
 source ./config.env
 
-if [ ! -e $TEKU_DIR/../genesis/eth2 ]; then
+if [ ! -e $TEKU_DIR/../genesis/generate ]; then
     echo "Error: you must generate beacon state and validators before running this script"
     exit 1
 fi
 
-if [ ! -e $TEKU_DIR/../genesis/eth2/public ]; then
+if [ ! -e $TEKU_DIR/../genesis/generate/public ]; then
     echo "Error: beacon state not generated in ../genesis"
     exit 1
 fi
@@ -21,14 +21,14 @@ fi
 rm -rf $DATADIR
 mkdir -p $DATADIR/network && \
 	cd $DATADIR/network && \
-	cp $TEKU_DIR/../genesis/eth2_config.yaml ./config.yaml && \
+	cp $TEKU_DIR/../genesis/generate/eth2_config.yaml ./config.yaml && \
 	sed -i "s/TERMINAL_TOTAL_DIFFICULTY:.*/TERMINAL_TOTAL_DIFFICULTY: $TTD_OVERRIDE/" ./config.yaml && \
 	sed -i "/TERMINAL_BLOCK_HASH/d" ./config.yaml && \
-	cp $TEKU_DIR/../genesis/eth2/public/genesis.ssz . && \
+	cp $TEKU_DIR/../genesis/generate/public/genesis.ssz . && \
 	cd - 1>/dev/null
 
 cd $TEKU_DIR
-if [ ! -e ../genesis/eth2/private ]; then
+if [ ! -e ../genesis/generate/private ]; then
     echo "Error: validator keys not generated in ../genesis"
     exit 1
 fi
@@ -36,7 +36,7 @@ fi
 mkdir -p $DATADIR/validators
 cd $DATADIR/validators
 
-for full in $(echo $TEKU_DIR/../genesis/eth2/private/*); do
+for full in $(echo $TEKU_DIR/../genesis/generate/private/*); do
 	base=$(basename $full);
 	mkdir $base && \
 		cd $base && \

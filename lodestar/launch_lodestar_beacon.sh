@@ -15,6 +15,12 @@ if [ ! -e $DATADIR ]; then
     exit 1
 fi
 
+if [ ! -e $LODESTAR_SCRIPT ]; then
+	echo "Error: file '$LODESTAR_SCRIPT' not found."
+	echo "Ensure \$LODESTAR_SCRIPT is set correctly in config.env"
+	exit 1
+fi
+
 cd $(dirname $LODESTAR_SCRIPT)
 $LODESTAR_SCRIPT \
     --rootDir $DATADIR \

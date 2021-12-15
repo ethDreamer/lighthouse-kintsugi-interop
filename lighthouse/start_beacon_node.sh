@@ -11,7 +11,18 @@ fi
 source ./config.env
 source ../bootnode.env
 
-echo "Staring lighthouse beacon node using execution engine at $EXECUTION_ENDPOINT..."
+if [ ! -e $DATADIR ]; then
+    echo "Must run setup_datadir.sh before running this"
+    exit 1
+fi
+
+if [ ! -e $LIGHTHOUSE_BINARY ]; then
+	echo "Error: file '$LIGHTHOUSE_BINARY' not found."
+	echo "Ensure \$LIGHTHOUSE_BINARY is set correctly in config.env"
+	exit 1
+fi
+
+echo "Using execution engine at $EXECUTION_ENDPOINT..."
 
 $LIGHTHOUSE_BINARY \
     --spec $SPEC \

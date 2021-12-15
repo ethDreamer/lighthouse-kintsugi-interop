@@ -19,6 +19,12 @@ if [ ! -e $DATADIR ]; then
     exit 1
 fi
 
+if [ ! -e $TEKU_BINARY ]; then
+	echo "Error: file '$TEKU_BINARY' not found."
+	echo "Ensure \$TEKU_BINARY is set correctly in config.env"
+	exit 1
+fi
+
 DPATH="$DATADIR/validators/node_$1"
 FEE_ADDRESS=0x0000000000000000000000000000000000000001
 #export TEKU_OPTS="-Dlog4j.configurationFile=$TEKU_DIR/log_debug.xml"

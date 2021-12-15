@@ -15,6 +15,12 @@ if [ ! -e $DATADIR ]; then
     exit 1
 fi
 
+if [ ! -e $TEKU_BINARY ]; then
+	echo "Error: file '$TEKU_BINARY' not found."
+	echo "Ensure \$TEKU_BINARY is set correctly in config.env"
+	exit 1
+fi
+
 echo "Using execution endpoint at: $EXECUTION_ENDPOINT"
 
 $TEKU_BINARY \
@@ -30,7 +36,6 @@ $TEKU_BINARY \
 	--rest-api-interface $REST_ADDRESS \
 	--rest-api-port $REST_PORT \
 	--Xee-endpoint="$EXECUTION_ENDPOINT" \
-	--eth1-endpoint="$EXECUTION_ENDPOINT" \
-	--terminal-total-difficulty-override $TTD_OVERRIDE
+	--eth1-endpoint="$EXECUTION_ENDPOINT"
 
 

@@ -19,8 +19,13 @@ if [ ! -e $DATADIR ]; then
     exit 1
 fi
 
-NODE="node_$1"
+if [ ! -e $NIMBUS_VALIDATOR_BINARY ]; then
+	echo "Error: file '$NIMBUS_VALIDATOR_BINARY' not found."
+	echo "Ensure \$NIMBUS_VALIDATOR_BINARY is set correctly in config.env"
+	exit 1
+fi
 
+NODE="node_$1"
 
 $NIMBUS_VALIDATOR_BINARY \
 	--data-dir="$DATADIR/validators/$NODE" \

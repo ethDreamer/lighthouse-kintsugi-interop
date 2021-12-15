@@ -5,7 +5,7 @@
 ```bash
 git clone git@github.com:MariusVanDerWijden/go-ethereum.git
 cd go-ethereum
-git checkout beacon-ontopof-4399
+git checkout merge-devnet-3
 make
 ```
 

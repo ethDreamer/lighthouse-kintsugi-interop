@@ -19,6 +19,12 @@ if [ ! -e $DATADIR ]; then
     exit 1
 fi
 
+if [ ! -e $PRYSM_VALIDATOR_BINARY ]; then
+	echo "Error: file '$PRYSM_VALIDATOR_BINARY' not found."
+	echo "Ensure \$PRYSM_VALIDATOR_BINARY is set correctly in config.env"
+	exit 1
+fi
+
 DPATH="$DATADIR/validators/node_$1"
 
 echo "Using beacon REST endpoint at: $BEACON_ENDPOINT"
