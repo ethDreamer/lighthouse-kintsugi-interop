@@ -30,10 +30,11 @@ This will create two binaries `eth2-testnet-geneis` & `eth2-val-tools` in their 
 
 ### Set Variables in `../globals.env`
 
+- `ETH1_CONSENSUS_ALGORITHM` # set to either 'ethash' or 'clique'
 - `SPEC` # 'mainnet' or 'minimal'
 - `GENESIS_VALIDATORS` # validators included at genesis
 - `VALIDATOR_NODE_COUNT` # number of validator nodes (ensure `GENESIS_VALIDATORS` % `VALIDATOR_NODE_COUNT` == 0)
-- `TTD_OVERRIDE` # Terminal Total Difficulty Override (in decimal)
+- `TTD_OVERRIDE` # Terminal Total Difficulty Override (in decimal) Note ethash requires TTD 10^6x larger than clique
 - `VALIDATOR_MNEMONIC` # the mnemonic from which to generate the validators
 - `GENESIS_TIME` # (optional) if empty, script will round down to start of the nearest hour
 
