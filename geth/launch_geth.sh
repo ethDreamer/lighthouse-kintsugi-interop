@@ -10,6 +10,11 @@ fi
 
 source ./config.env
 
+SED=$(which gsed 2>/dev/null)
+if [ -z "$var" ]; then
+	SED=sed
+fi
+
 if [ ! -e $GETH_BINARY ]; then
 	echo "Error: file '$GETH_BINARY' not found."
 	echo "Ensure \$GETH_BINARY is set correctly in config.env"
@@ -37,7 +42,7 @@ else
 fi
 
 # the cli flag is causing seg faults so..
-sed -i "s/terminalTotalDifficulty.*/terminalTotalDifficulty\":$TTD_OVERRIDE,/" $DATADIR/network/genesis.json
+$SED -i "s/terminalTotalDifficulty.*/terminalTotalDifficulty\":$TTD_OVERRIDE,/" $DATADIR/network/genesis.json
 
 $GETH_BINARY \
     --catalyst \
@@ -71,7 +76,7 @@ else
         --port $DISCOVERY_PORT \
         --datadir $DATADIR \
         console |& grep "enode:" | \
-        sed 's/",*//g' > $GETH_DIR/enode.dat
+        $SED 's/",*//g' > $GETH_DIR/enode.dat
     cleanup() {
         rm -f $GETH_DIR/enode.dat
     }
