@@ -35,6 +35,7 @@ $PRYSM_VALIDATOR_BINARY \
 	--datadir $DPATH \
 	--wallet-dir "$DPATH/prysm" \
 	--verbosity $VERBOSITY \
+	--chain-config-file $DATADIR/network/config.yaml \
 	--beacon-rpc-provider="$BEACON_ENDPOINT"
 
 
