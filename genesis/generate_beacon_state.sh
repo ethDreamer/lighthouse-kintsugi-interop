@@ -11,7 +11,7 @@ fi
 source ./config.env
 
 SED=$(which gsed 2>/dev/null)
-if [ -z "$var" ]; then
+if [ -z "$SED" ]; then
 	SED=sed
 fi
 

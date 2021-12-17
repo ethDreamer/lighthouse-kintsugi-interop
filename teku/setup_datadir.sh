@@ -19,7 +19,7 @@ if [ ! -e $TEKU_DIR/../genesis/generate/public ]; then
 fi
 
 SED=$(which gsed 2>/dev/null)
-if [ -z "$var" ]; then
+if [ -z "$SED" ]; then
 	SED=sed
 fi
 

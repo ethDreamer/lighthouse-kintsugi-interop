@@ -11,7 +11,7 @@ fi
 source ./config.env
 
 SED=$(which gsed 2>/dev/null)
-if [ -z "$var" ]; then
+if [ -z "$SED" ]; then
 	SED=sed
 fi
 
@@ -75,7 +75,7 @@ else
         --networkid 700 \
         --port $DISCOVERY_PORT \
         --datadir $DATADIR \
-        console |& grep "enode:" | \
+        console 2>&1 | grep "enode:" | \
         $SED 's/",*//g' > $GETH_DIR/enode.dat
     cleanup() {
         rm -f $GETH_DIR/enode.dat
